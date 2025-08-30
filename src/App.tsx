@@ -9,6 +9,7 @@ import { UrbanPlanning } from './components/UrbanPlanning';
 import { SmartMobility } from './components/SmartMobility';
 import { Footer } from './components/Footer';
 import { AverageRainfall } from "./components/AverageRainfall";
+import Chatbot  from "./components/Chatbot";
 // ...
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
             <ClimateAction />
             <AverageRainfall />
             <UrbanPlanning />
-
+            <Chatbot />
 
             <Footer />
         </div>

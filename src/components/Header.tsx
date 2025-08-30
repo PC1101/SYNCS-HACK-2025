@@ -7,10 +7,8 @@ export const Header: React.FC = () => {
   const navItems = [
     { label: 'Dashboard', href: '#dashboard' },
     { label: 'Resources', href: '#resources' },
-    { label: 'Future Work', href: '#work' },
     { label: 'Climate', href: '#climate' },
     { label: 'Planning', href: '#planning' },
-    { label: 'Mobility', href: '#mobility' },
   ];
 
   return (
