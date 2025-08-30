@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
 # --------- CONFIG ---------
-DATA_DIR = Path("/Users/chenshihchi1/Desktop/SYNCS-HACK-2025/weather data")  # folder with raw station JSONs
+DATA_DIR = Path("/Users/chenshihchi1/Desktop/SYNCS-HACK-2025/public/data")  # folder with raw station JSONs
 POP_CSV  = DATA_DIR / "population.csv"                                       # station_name,population
 OUT_DIR  = DATA_DIR / "out"
 OUT_DIR.mkdir(parents=True, exist_ok=True)

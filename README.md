@@ -5,7 +5,7 @@
 
 ## 🚩 Problem Overview  
 
-Even though Sydney receives regular rainfall, only about a third of suitable homes actually use rainwater tanks—and those that do save just ~21% of household water demand (Sydney Water, 2013). Many tanks sit full and unused during major rains (Kingspan, 2020), while others are installed in default sizes that cost more than they save (Rahman, 2012).  
+Even though Sydney receives regular rainfall, only about a third of suitable homes actually use rainwater tanks, and those that do save just ~21% of household water demand (Sydney Water, 2013). Many tanks sit full and unused during major rains (Kingspan, 2020), while others are installed in default sizes that cost more than they save (Rahman, 2012).  
 
 In short, Sydney is sitting on a hidden water reserve, but it’s mostly untapped. The reason is that decision makers lack the tools needed to allocate water resources proactively, and NSW needs a system that can better manage rainfall recycling systems.  
 

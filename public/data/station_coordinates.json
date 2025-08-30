@@ -1,0 +1,197 @@
+{
+    "Abbotsford": {
+        "latitude": 33.85,
+        "longitude": 151.13,
+        "mean_risk": 0.0
+    },
+    "Centennial_Park": {
+        "latitude": 33.90,
+        "longitude": 151.23,
+        "mean_risk": 0.0
+    },
+    "Chatswood": {
+        "latitude": 33.80,
+        "longitude": 151.18,
+        "mean_risk": 0.0
+    },
+    "Marrickville": {
+        "latitude": 33.92,
+        "longitude": 151.14,
+        "mean_risk": 0.0
+    },
+    "Millers_Point": {
+        "latitude": 33.87,
+        "longitude": 151.22,
+        "mean_risk": 0.0
+    },
+    "Randwick_Racecourse_NSW": {
+        "latitude": 33.91,
+        "longitude": 151.23,
+        "mean_risk": 0.0
+    },
+    "Randwick": {
+        "latitude": 33.91,
+        "longitude": 151.24,
+        "mean_risk": 0.0
+    },
+    "Rose_Bay": {
+        "latitude": 33.88,
+        "longitude": 151.27,
+        "mean_risk": 0.0
+    },
+    "Sydney_Olympic_Park": {
+        "latitude": 33.83,
+        "longitude": 151.07,
+        "mean_risk": 0.0
+    },
+    "Dundee": {
+        "latitude": 29.55,
+        "longitude": 152.00,
+        "mean_risk": 0.0
+    },
+    "Guyra": {
+        "latitude": 30.16,
+        "longitude": 151.88,
+        "mean_risk": 0.0
+    },
+    "Pinkett": {
+        "latitude": 29.90,
+        "longitude": 151.97,
+        "mean_risk": 0.0
+    },
+    "Glen_Elgin": {
+        "latitude": 29.56,
+        "longitude": 152.14,
+        "mean_risk": 0.0
+    },
+    "Ebor": {
+        "latitude": 30.40,
+        "longitude": 152.36,
+        "mean_risk": 0.0
+    },
+    "Glen_Innes": {
+        "latitude": 29.68,
+        "longitude": 151.69,
+        "mean_risk": 0.0
+    },
+    "Kookabookra": {
+        "latitude": 30.01,
+        "longitude": 152.01,
+        "mean_risk": 0.0
+    },
+    "Newton_Boyd": {
+        "latitude": 29.76,
+        "longitude": 152.21,
+        "mean_risk": 0.0
+    },
+    "Avoca_Beach": {
+        "latitude": 33.47,
+        "longitude": 151.41,
+        "mean_risk": 0.0
+    },
+    "Concord": {
+        "latitude": 33.85,
+        "longitude": 151.10,
+        "mean_risk": 0.0
+    },
+    "Cronulla": {
+        "latitude": 34.07,
+        "longitude": 151.15,
+        "mean_risk": 0.0
+    },
+    "Mascot": {
+        "latitude": 33.95,
+        "longitude": 151.17,
+        "mean_risk": 0.0
+    },
+    "Sans_Souci": {
+        "latitude": 33.85,
+        "longitude": 151.13,
+        "mean_risk": 0.0
+    },
+    "Terrey_Hills": {
+        "latitude": 33.69,
+        "longitude": 151.22,
+        "mean_risk": 0.0
+    },
+    "Lucas_Heights": {
+        "latitude": 34.05,
+        "longitude": 150.98,
+        "mean_risk": 0.0
+    },
+    "Mount_Kuring-Gai": {
+        "latitude": 33.64,
+        "longitude": 151.14,
+        "mean_risk": 0.0
+    },
+    "Gordon": {
+        "latitude": 33.77,
+        "longitude": 151.12,
+        "mean_risk": 0.0
+    },
+    "Collaroy": {
+        "latitude": 33.74,
+        "longitude": 151.31,
+        "mean_risk": 0.0
+    },
+    "Mona_Vale": {
+        "latitude": 33.68,
+        "longitude": 151.31,
+        "mean_risk": 0.0
+    },
+    "Duffys_Forest": {
+        "latitude": 33.68,
+        "longitude": 151.18,
+        "mean_risk": 0.0
+    },
+    "Peakhurst": {
+        "latitude": 33.97,
+        "longitude": 151.06,
+        "mean_risk": 0.0
+    },
+    "Macquarie": {
+        "latitude": 33.78,
+        "longitude": 151.11,
+        "mean_risk": 0.0
+    },
+    "Holsworthy": {
+        "latitude": 33.99,
+        "longitude": 150.95,
+        "mean_risk": 0.0
+    },
+    "Audley": {
+        "latitude": 34.06,
+        "longitude": 151.06,
+        "mean_risk": 0.0
+    },
+    "Canterbury": {
+        "latitude": 33.91,
+        "longitude": 151.11,
+        "mean_risk": 0.0
+    },
+    "Wahroonga": {
+        "latitude": 33.72,
+        "longitude": 151.11,
+        "mean_risk": 0.0
+    },
+    "Sydney": {
+        "latitude": 33.86,
+        "longitude": 151.21,
+        "mean_risk": 0.0
+    },
+    "Hornsby": {
+        "latitude": 33.70,
+        "longitude": 151.10,
+        "mean_risk": 0.0
+    },
+    "North_Parramatta": {
+        "latitude": 33.79,
+        "longitude": 151.02,
+        "mean_risk": 0.0
+    },
+    "North_Rocks": {
+        "latitude": 33.77,
+        "longitude": 151.02,
+        "mean_risk": 0.0
+    }
+}
