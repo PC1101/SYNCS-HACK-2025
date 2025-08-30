@@ -8,21 +8,26 @@ import { ClimateAction } from './components/ClimateAction';
 import { UrbanPlanning } from './components/UrbanPlanning';
 import { SmartMobility } from './components/SmartMobility';
 import { Footer } from './components/Footer';
+import { AverageRainfall } from "./components/AverageRainfall";
+// ...
 
 function App() {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      <Hero />
-      <DashboardOverview />
-      <ResourceManagement />
-      <FutureWork />
-      <ClimateAction />
-      <UrbanPlanning />
-      <SmartMobility />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="min-h-screen bg-gray-50">
+            <Header />
+            <Hero />
+            <DashboardOverview />
+            <ResourceManagement />
+            <FutureWork />
+            <ClimateAction />
+            <AverageRainfall />
+            <UrbanPlanning />
+
+            <SmartMobility />
+
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
