@@ -18,3 +18,7 @@ df_clean = df_clean.sort_values("date").reset_index(drop=True)
 df_clean["rain_7d"] = df_clean["rainfall_mm"].rolling(7).sum()
 df_clean["rain_30d"] = df_clean["rainfall_mm"].rolling(30).sum()
 df_clean.head(20)
+
+
+
+#library to display heat map 
