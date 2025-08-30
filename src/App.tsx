@@ -18,12 +18,10 @@ function App() {
             <Hero />
             <DashboardOverview />
             <ResourceManagement />
-            <FutureWork />
             <ClimateAction />
             <AverageRainfall />
             <UrbanPlanning />
 
-            <SmartMobility />
 
             <Footer />
         </div>

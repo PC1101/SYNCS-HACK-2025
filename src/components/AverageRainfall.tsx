@@ -45,7 +45,25 @@ const STATIONS: { stationNumber: string; stationName: string }[] = [
     {stationNumber: '057014', stationName:'Glen Elgin (Glenbrook) NSW'},
     {stationNumber: '057023', stationName:'Ebor (Wongwibinda) NSW'},
     {stationNumber: '056094', stationName:'Dundee (Wattle Dale) NSW'},
-    {stationNumber: '066013', stationName:'Concord Golf Club NSW'}
+    {stationNumber: '066013', stationName:'Concord Golf Club NSW'},
+    {stationNumber: '066126', stationName:'Collaroy (Long Reef Golf Club) NSW'},
+    {stationNumber: '066120', stationName:'Gordon Golf Club NSW'},
+    {stationNumber: '066059', stationName:'Terrey Hills AWS NSW'},
+    {stationNumber: '066142', stationName:'Duffys Forest (Namba Rd) NSW'},
+    {stationNumber: '066211', stationName:'Wahroonga (Ada Avenue) NSW'},
+    {stationNumber: '067065', stationName:'Hornsby (Swimming Pool) NSW'},
+    {stationNumber: '066119', stationName:'Mount Kuring-Gai (Ledora Farm) NSW'},
+    {stationNumber: '067112', stationName:'North Rocks (Muirfield Golf Club) NSW'},
+    {stationNumber: '066058', stationName:'Sans Souci (Public School) NSW'},
+    {stationNumber: '066014', stationName:'Cronulla South Bowling Club NSW'},
+    {stationNumber: '066141', stationName:'Mona Vale Golf Club NSW'},
+    {stationNumber: '061294', stationName:'Avoca Beach Bowling Club NSW'},
+    {stationNumber: '066148', stationName:'Peakhurst Golf Club NSW'},
+    {stationNumber: '066137', stationName:'Bankstown Airport AWS NSW'},
+    {stationNumber: '066161', stationName:'Holsworthy Aerodrome AWS NSW'},
+    {stationNumber: '066176', stationName:'Audley (Royal National Park) NSW'},
+    {stationNumber: '066078', stationName:'Lucas Heights (ANSTO) NSW'}
+
 ];
 
 const MONTHS = [

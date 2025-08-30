@@ -1,0 +1,64 @@
+# ===== Node / Vite / TS =====
+node_modules/
+dist/
+build/
+.vite/
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== Env files (keep example) =====
+.env
+.env.*
+!.env.example
+
+# ===== Tests / coverage / e2e =====
+coverage/
+.nyc_output/
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+playwright-report/
+blob-report/
+test-results/
+.jest/
+
+# ===== Storybook =====
+storybook-static/
+
+# ===== Editors / IDEs =====
+# JetBrains (IntelliJ/WebStorm)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code (ignore all but allow common workspace files)
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# ===== OS cruft =====
+.DS_Store
+Thumbs.db
+
+# ===== Misc =====
+*.local
+*.swp
+*.swo
+*.tmp
+*.orig
+
+# ===== Docker / local ops (optional) =====
+docker-compose.override.yml
+.env.local
+.env.docker
+
+# ===== SpringBoot =====
+spring-backend/target/
