@@ -162,12 +162,22 @@ model_df["impact_score"] = model_df["risk_prob"] * model_df["pop_norm_01"]
 
 # --------- SAVE ---------
 combined = model_df.sort_values(["station_name", "date"])
-combined_out = OUT_DIR / "all_stations_risk_with_population.csv"
-combined.to_csv(combined_out, index=False)
+
+# Keep only the desired columns
+keep_cols = ["station_name", "date", "population_2025", "rainfall_mm", "risk_class"]
+combined_out_df = combined[keep_cols]
+
+# Save combined file as JSON
+combined_out = OUT_DIR / "all_stations_risk_with_population.json"
+combined_out_df.to_json(combined_out, orient="records", date_format="iso")
 print(f"Saved combined results → {combined_out}")
 
-# optional: per-station files
-for stn, g in combined.groupby("station_name", sort=True):
+# Save per-station JSON files
+for stn, g in combined_out_df.groupby("station_name", sort=True):
     safe = "".join(c for c in stn if c.isalnum() or c in (" ","_","-")).strip().replace(" ", "_")
-    (OUT_DIR / f"{safe}_risk.csv").write_text(g.to_csv(index=False))
-print(f"Saved per-station CSVs to {OUT_DIR}")
+    out_path = OUT_DIR / f"{safe}_risk.json"
+    g.to_json(out_path, orient="records", date_format="iso")
+print(f"Saved per-station JSONs to {OUT_DIR}")
+
+
+#station_name, date, population, rainfall_mm, risk class 
