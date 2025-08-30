@@ -1,0 +1,17 @@
+# Clean and convert to the input format we want: date + rainfall
+
+# Step 1: Create a proper datetime column
+df["date"] = pd.to_datetime(dict(year=df["Year"], month=df["Month"], day=df["Day"]))
+
+# Step 2: Keep only relevant columns: date, rainfall
+df_clean = df[["date", "Rainfall amount (millimetres)"]].rename(columns={"Rainfall amount (millimetres)": "rainfall_mm"})
+
+# Step 3: Sort by date (in case not already)
+df_clean = df_clean.sort_values("date").reset_index(drop=True)
+
+# Step 4: Add rolling aggregates for features (optional for ML)
+df_clean["rain_7d"] = df_clean["rainfall_mm"].rolling(7).sum()
+df_clean["rain_30d"] = df_clean["rainfall_mm"].rolling(30).sum()
+
+import caas_jupyter_tools
+caas_jupyter_tools.display_dataframe_to_user("Cleaned Rainfall Data", df_clean.head(20))
