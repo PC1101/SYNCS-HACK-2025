@@ -7,10 +7,8 @@ export const Header: React.FC = () => {
   const navItems = [
     { label: 'Dashboard', href: '#dashboard' },
     { label: 'Resources', href: '#resources' },
-    { label: 'Future Work', href: '#work' },
     { label: 'Climate', href: '#climate' },
     { label: 'Planning', href: '#planning' },
-    { label: 'Mobility', href: '#mobility' },
   ];
 
   return (
@@ -19,7 +17,7 @@ export const Header: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
             <Building2 className="h-8 w-8 text-emerald-600" />
-            <span className="text-xl font-bold text-gray-900">Sydney 2050</span>
+            <span className="text-xl font-bold text-gray-900">Urban Oasis</span>
           </div>
 
           {/* Desktop Navigation */}

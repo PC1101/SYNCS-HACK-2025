@@ -22,10 +22,8 @@ const TO_YEAR = new Date().getFullYear();
 
 // Stations list (matches your scraping list)
 const STATIONS: { stationNumber: string; stationName: string }[] = [
-    { stationNumber: "066006", stationName: "Sydney Olympic Park" },
     { stationNumber: "066214", stationName: "Sydney (Observatory Hill)" },
     { stationNumber: "066160", stationName: "Centennial Park" },
-    { stationNumber: "066073", stationName: "Randwick Racecourse" },
     { stationNumber: "066052", stationName: "Randwick (Randwick St)" },
     { stationNumber: "066098", stationName: "Rose Bay (RSGC)" },
     { stationNumber: "066034", stationName: "Abbotsford (Blackwell Point Rd)" },
@@ -33,7 +31,6 @@ const STATIONS: { stationNumber: string; stationName: string }[] = [
     { stationNumber: "066036", stationName: "Marrickville Golf Club" },
     {stationNumber: '066037', stationName:'Sydney Airport AMO NSW'},
     {stationNumber: '066194', stationName:'Canterbury Racecourse AWS NSW'},
-    {stationNumber: '066124', stationName:'Parramatta North (Masons Drive) NSW'},
     {stationNumber: '067111', stationName:'North Parramatta (Burnside Homes) NSW'},
     {stationNumber: '066156', stationName:'Macquarie Park (Willandra Village) NSW'},
     {stationNumber: '056205', stationName:'Pinkett (Benbookra) NSW'},
@@ -41,7 +38,6 @@ const STATIONS: { stationNumber: string; stationName: string }[] = [
     {stationNumber: '057123', stationName:'Newton Boyd (Abbey Green) NSW'},
     {stationNumber: '057082', stationName:'Glen Innes (Mt Mitchell Forest) NSW'},
     {stationNumber: '056161', stationName:'Guyra (Gowan Brae) NSW'},
-    {stationNumber: '056098', stationName:'Dundee (Karinga) NSW'},
     {stationNumber: '057014', stationName:'Glen Elgin (Glenbrook) NSW'},
     {stationNumber: '057023', stationName:'Ebor (Wongwibinda) NSW'},
     {stationNumber: '056094', stationName:'Dundee (Wattle Dale) NSW'},
@@ -59,7 +55,6 @@ const STATIONS: { stationNumber: string; stationName: string }[] = [
     {stationNumber: '066141', stationName:'Mona Vale Golf Club NSW'},
     {stationNumber: '061294', stationName:'Avoca Beach Bowling Club NSW'},
     {stationNumber: '066148', stationName:'Peakhurst Golf Club NSW'},
-    {stationNumber: '066137', stationName:'Bankstown Airport AWS NSW'},
     {stationNumber: '066161', stationName:'Holsworthy Aerodrome AWS NSW'},
     {stationNumber: '066176', stationName:'Audley (Royal National Park) NSW'},
     {stationNumber: '066078', stationName:'Lucas Heights (ANSTO) NSW'}
