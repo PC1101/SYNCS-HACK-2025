@@ -44,46 +44,6 @@
         "longitude": 151.07,
         "mean_risk": 0.0
     },
-    "Dundee": {
-        "latitude": 29.55,
-        "longitude": 152.00,
-        "mean_risk": 0.0
-    },
-    "Guyra": {
-        "latitude": 30.16,
-        "longitude": 151.88,
-        "mean_risk": 0.0
-    },
-    "Pinkett": {
-        "latitude": 29.90,
-        "longitude": 151.97,
-        "mean_risk": 0.0
-    },
-    "Glen_Elgin": {
-        "latitude": 29.56,
-        "longitude": 152.14,
-        "mean_risk": 0.0
-    },
-    "Ebor": {
-        "latitude": 30.40,
-        "longitude": 152.36,
-        "mean_risk": 0.0
-    },
-    "Glen_Innes": {
-        "latitude": 29.68,
-        "longitude": 151.69,
-        "mean_risk": 0.0
-    },
-    "Kookabookra": {
-        "latitude": 30.01,
-        "longitude": 152.01,
-        "mean_risk": 0.0
-    },
-    "Newton_Boyd": {
-        "latitude": 29.76,
-        "longitude": 152.21,
-        "mean_risk": 0.0
-    },
     "Avoca_Beach": {
         "latitude": 33.47,
         "longitude": 151.41,
@@ -149,7 +109,7 @@
         "longitude": 151.06,
         "mean_risk": 0.0
     },
-    "Macquarie": {
+    "Macquarie_Park": {
         "latitude": 33.78,
         "longitude": 151.11,
         "mean_risk": 0.0
@@ -172,11 +132,6 @@
     "Wahroonga": {
         "latitude": 33.72,
         "longitude": 151.11,
-        "mean_risk": 0.0
-    },
-    "Sydney": {
-        "latitude": 33.86,
-        "longitude": 151.21,
         "mean_risk": 0.0
     },
     "Hornsby": {

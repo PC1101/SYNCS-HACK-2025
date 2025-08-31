@@ -12,14 +12,6 @@ def start():
         "Randwick_risk.json",
         "Rose_Bay_risk.json",
         "Sydney_Olympic_Park_risk.json",
-        "Dundee_risk.json",
-        "Guyra_risk.json",
-        "Pinkett_risk.json",
-        "Glen_Elgin_risk.json",
-        "Ebor_risk.json",
-        "Glen_Innes_risk.json",
-        "Kookabookra_risk.json",
-        "Newton_Boyd_risk.json",
         "Avoca_Beach_risk.json",
         "Concord_risk.json",
         "Cronulla_risk.json",
@@ -33,22 +25,21 @@ def start():
         "Mona_Vale_risk.json",
         "Duffys_Forest_risk.json",
         "Peakhurst_risk.json",
-        "Macquarie_risk.json",
+        "Macquarie_Park_risk.json",
         "Holsworthy_risk.json",
         "Audley_risk.json",
         "Canterbury_risk.json",
         "Wahroonga_risk.json",
-        "Sydney_risk.json",
         "Hornsby_risk.json",
         "North_Parramatta_risk.json",
         "North_Rocks_risk.json"
     ]
 
-    with open(f"weather data/station_coordinates.json", "r") as f:
+    with open(f"public/data/station_coordinates.json", "r") as f:
         station_info = json.load(f)
 
     for file_name in file_list:
-        with open(f"public/data/{file_name}", "r") as f:
+        with open(f"public/data/out/{file_name}", "r") as f:
             json_data = json.load(f)
 
         cum_risk = 0
