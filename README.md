@@ -1,292 +1,284 @@
-ChatGPT said:
-🌱 UrbanOasis — Sydney 2050
+# 🌱 UrbanOasis — Sydney 2050
+*All-in-one rainfall analytics + drought‑risk demo*
 
-An all-in-one tool for rainwater recycling optimisation
+> Frontend: **Vite + React + TypeScript + Tailwind + Recharts**  
+> Backend: **Express (Node 18+)**, optional **OpenAI GPT** fallback for chat
 
-Frontend: Vite + React + TypeScript + Tailwind + Recharts
-Backend: Express (Node 18+), optional OpenAI GPT integration
+---
 
-🚩 Problem Overview
+## Table of Contents
+- [Overview](#overview)
+- [Problem Statement](#problem-statement)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Data & File Format](#data--file-format)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Install](#install)
+  - [Run Dev (frontend + server)](#run-dev-frontend--server)
+  - [Environment Variables](#environment-variables)
+- [APIs](#apis)
+  - [`GET /api/health`](#get-apihealth)
+  - [`POST /api/rainfall`](#post-apirainfall)
+  - [`GET /api/rainfall/meta`](#get-apirainfallmeta)
+  - [`POST /api/chat`](#post-apichat)
+- [Frontend Notes](#frontend-notes)
+- [Tunneling / Remote Demo](#tunneling--remote-demo)
+- [Build & Preview](#build--preview)
+- [Troubleshooting](#troubleshooting)
+- [Attribution](#attribution)
 
-Sydney receives regular rainfall, yet only ~⅓ of suitable homes use rainwater tanks, and those save ~21% of household demand (Sydney Water, 2013). Many tanks sit full during major rains (Kingspan, 2020), while default sizing can be uneconomic (Rahman, 2012). We lack tools that turn rainfall data into proactive water-allocation decisions.
+---
 
-💡 Our Solution
+## Overview
+UrbanOasis turns NSW rainfall station data into quick, actionable insights.  
+It loads **prepared BoM station JSON** files, computes **monthly/annual averages**, shows a **multi‑station bar chart**, and renders a **drought‑risk heatmap**.  
+The **Chat assistant** answers rainfall questions from local JSON first, and (optionally) falls back to the **OpenAI API**.
 
-Provides updated rainfall data by station (using prepared BoM JSONs).
+---
 
-Estimates drought risk probability from historical rainfall + population.
+## Problem Statement
+Even though Sydney receives regular rainfall, only ~1/3 of suitable homes use rainwater tanks, and those that do save ~21% of household demand. Tanks are often oversized, under‑utilised, or installed by default rather than optimised. Sydney is sitting on a hidden water reserve, but decision‑makers lack tools to allocate resources proactively. UrbanOasis provides a **risk scoring system** that:
+- Streams/aggregates rainfall from NSW BoM stations.
+- Predicts **drought risk probability** using historical rainfall and population density.
+- Converts probabilities into **1–5 risk classes** for easy visualisation.
 
-Converts risk into five classes (1–5) and shows a heatmap.
+---
 
-Surfaces insights in a dashboard and a chat assistant (local JSON first, GPT fallback).
+## Features
+- 🌧 **Rainfall analytics**: toggle stations, compare monthly averages, see wettest months & average annual totals.
+- 🗺️ **Drought‑risk heatmap**: PNG visualisation indicating relative drought risk (model output).
+- 💬 **Chat assistant**: local JSON Q&A → OpenAI fallback (streaming).
+- 📌 **Sticky navigation + dashboard**: clean sectioned UI (Dashboard, Resources, Climate, Planning, Rainfall).
 
-📊 Data Sources
+---
 
-Rainfall: Bureau of Meteorology (BoM) NSW station records
+## Tech Stack
+- **Frontend**: Vite, React, TypeScript, TailwindCSS, Recharts
+- **Backend**: Express, TypeScript, OpenAI SDK (optional)
+- **Dev tooling**: tsx, concurrently, ESLint
 
-Population: Australian Bureau of Statistics (ABS)
+---
 
-⚠️ This app reads prepared JSON from public/data/. Use BoM/ABS data according to their terms.
-
-🔬 Methodology (Model Overview)
-
-Preprocessing: Flatten station JSON (year → month → day), compute rolling rainfall (7/30-day).
-
-Drought Labels: Drought = lowest 20% of historical 30-day rainfall per station.
-
-Features: Monthly anomaly (z-score), population exposure (2025).
-
-Model: Random Forest (binary drought vs. not); probability → 5 classes.
-
-Impact Score: Risk × Normalised Population to highlight hotspots.
-
-✨ App Features
-
-Sticky header anchors: Dashboard, Resources, Climate, Planning
-
-Dashboard KPIs + activity feed
-
-Climate / Planning / Mobility / Resources: clear card-based sections
-
-Rainfall Analytics
-
-Loads station JSONs from /public/data (e.g. rain_json_066214_2015_2025.json)
-
-Compares monthly averages across stations (toggle stations on/off)
-
-Heatmap visualises relative drought risk (from model output)
-
-Chat Assistant
-
-Answers rainfall queries from local JSON first
-
-Falls back to OpenAI GPT for general Q&A (if API key set)
-
-🗂️ Project Structure
+## Project Structure
+```
 server/
-index.ts          # Express server (chat + rainfall + meta APIs)
-rainfall.ts       # Loads/aggregates station JSON from /public/data
+  index.ts          # Express server (health, rainfall, meta, chat)
+  rainfall.ts       # Reads /public/data, aggregates & summarizes station JSON
 src/
-App.tsx
-components/
-AverageRainfall.tsx
-Header.tsx
-Hero.tsx
-DashboardOverview.tsx
-ClimateAction.tsx
-SmartMobility.tsx
-UrbanPlanning.tsx
-ResourceManagement.tsx
-FutureWork.tsx
-Footer.tsx
+  App.tsx
+  components/
+    AverageRainfall.tsx
+    Header.tsx
+    Hero.tsx
+    DashboardOverview.tsx
+    ClimateAction.tsx
+    SmartMobility.tsx
+    UrbanPlanning.tsx
+    ResourceManagement.tsx
+    FutureWork.tsx
+    Footer.tsx
+  assets/
+    heatmap.png     # (optional) if you import the PNG via bundler
 public/
-data/
-rain_json_<STATION>_<FROM>_<TO>.json
-heatmap.png
+  data/
+    rain_json_<STATION>_<FROM>_<TO>.json
+    heatmap.png     # (recommended) if you prefer static path /data/heatmap.png
+vite.config.ts
+package.json
+```
 
-🧩 Prerequisites
+---
 
-Node 18+
+## Data & File Format
 
-npm (or pnpm/yarn)
+Place station files in: **`public/data/`**
 
-⚙️ Setup
-1) Install
-   npm i
+**Filename pattern**
+```
+rain_json_<STATION_NUMBER>_<FROM_YEAR>_<TO_YEAR>.json
+# e.g. rain_json_066214_2015_2025.json
+```
 
-2) Data Files
-
-Place prepared files under:
-
-public/data/
-rain_json_066214_2015_2025.json
-rain_json_066160_2015_2025.json
-...
-heatmap.png
-
-
-JSON schema (example):
-
+**JSON schema**
+```json
 {
-"stationNum": "066214",
-"stationName": "Sydney (Observatory Hill) NSW",
-"years": {
-"2019": {
-"January": { "1": 12.4, "2": 0, "3": 5.0 },
-"February": { "1": 3.2 }
+  "stationNum": "066214",
+  "stationName": "Sydney (Observatory Hill) NSW",
+  "years": {
+    "2019": {
+      "January": { "1": 12.4, "2": 0, "3": 5.0 },
+      "February": { "1": 3.2 }
+    },
+    "2020": {}
+  }
 }
-}
-}
+```
 
+> `AverageRainfall.tsx` defaults to `FROM_YEAR = 2015` and `TO_YEAR = <current year>`.  
+> Keep filenames consistent with these constants or update the constants to match your files.
 
-Filenames must follow: rain_json_<STATION>_<FROM_YEAR>_<TO_YEAR>.json.
-AverageRainfall.tsx defaults to FROM_YEAR = 2015 and TO_YEAR = current year; keep filenames consistent, or update those constants.
+**Heatmap image**
+- If using **public**: put `public/data/heatmap.png` and reference `/data/heatmap.png`.
+- If using **bundled asset**: put `src/assets/heatmap.png` and `import heatmapPng from "../assets/heatmap.png"`.
 
-3) (Optional) OpenAI
+---
 
-Create .env in project root:
+## Getting Started
 
-OPENAI_API_KEY=sk-...
-PORT=8787
+### Prerequisites
+- **Node 18+**
+- npm (or pnpm/yarn)
 
+### Install
+```bash
+npm i
+```
 
-Without a key, the chat will still answer structured rainfall questions from local JSON, but not general GPT prompts.
-
-🏃 Run
-
-Local (two processes via proxy):
-
+### Run Dev (frontend + server)
+```bash
+# runs Express on :8787 and Vite on :5173 with proxy /api → :8787
 npm run dev:local
+```
+Open: <http://localhost:5173>
 
-
-Frontend: http://localhost:5173
-
-API: http://localhost:8787
-
-Vite proxies /api/* → Express (see vite.config.ts).
-
-Tunnel/HMR (optional):
-
-npm run dev:tunnel
-
-
-Uses VITE_TUNNEL_HOST=urbanoasis.apdcrew.com for HTTPS HMR over a tunnel.
-
-Available scripts (from package.json):
-
+**Key scripts (from `package.json`)**
+```json
 {
-"dev": "vite",
-"dev:server": "tsx server/index.ts",
-"dev:web": "vite",
-"dev:all": "concurrently -k -n server,web \"npm:dev:server\" \"npm:dev:web\"",
-"build": "vite build",
-"lint": "eslint .",
-"preview": "vite preview",
-"dev:local": "npm run dev:all",
-"dev:tunnel": "VITE_TUNNEL_HOST=urbanoasis.apdcrew.com npm run dev:all"
+  "dev": "vite",
+  "dev:server": "tsx server/index.ts",
+  "dev:web": "vite",
+  "dev:all": "concurrently -k -n server,web \"npm:dev:server\" \"npm:dev:web\"",
+  "build": "vite build",
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "dev:local": "npm run dev:all",
+  "dev:tunnel": "VITE_TUNNEL_HOST=urbanoasis.apdcrew.com npm run dev:all"
 }
+```
 
-🔌 APIs
-Health
-GET /api/health
-→ { "ok": true, "ts": 1712345678901 }
+### Environment Variables
+Create a **`.env`** in project root for OpenAI fallback:
+```
+OPENAI_API_KEY=sk-your-key
+PORT=8787
+```
+> Without a key, chat still answers structured rainfall questions from local JSON; general GPT prompts will be unavailable.
 
-Rainfall (local JSON)
-POST /api/rainfall
-Content-Type: application/json
+---
+
+## APIs
+
+### `GET /api/health`
+```json
+{ "ok": true, "ts": 1712345678901 }
+```
+
+### `POST /api/rainfall`
+Summarize from local JSON.
+
+**Body**
+```json
 { "stationNum": "066214", "year": "2023", "month": "March" }
+```
 
-
-Responses
-
-Per-year totals (no year):
-
+**Responses**
+- **No `year`** → totals per year:
+```json
 {
-"stationNum":"066214",
-"stationName":"Sydney...",
-"perYear": { "2019": { "total_mm": 820.3 }, "2020": { "total_mm": 905.1 } }
+  "stationNum":"066214",
+  "stationName":"Sydney (Observatory Hill) NSW",
+  "perYear": { "2019": { "total_mm": 820.3 }, "2020": { "total_mm": 905.1 } }
 }
-
-
-Year summary:
-
+```
+- **Year only** → annual summary:
+```json
 {
-"stationNum":"066214",
-"stationName":"Sydney...",
-"year":"2023",
-"total_mm":965.2,
-"avg_monthly_mm":80.4,
-"monthly_totals_mm":{"January":50.0,"February":72.3,"...":90.1}
+  "stationNum":"066214",
+  "stationName":"Sydney (Observatory Hill) NSW",
+  "year":"2023",
+  "total_mm":965.2,
+  "avg_monthly_mm":80.4,
+  "monthly_totals_mm":{"January":50.0,"February":72.3,"...":90.1}
 }
+```
+- **Year + Month** → monthly total:
+```json
+{ "stationNum":"066214","stationName":"Sydney (Observatory Hill) NSW","year":"2023","month":"March","total_mm":85.7 }
+```
 
+### `GET /api/rainfall/meta`
+Returns dataset coverage:
+```json
+{
+  "stationCount": 9,
+  "stations": [
+    { "stationNum":"066214","fromYear":2015,"toYear":2025,"file":"/data/rain_json_066214_2015_2025.json" }
+  ],
+  "global": { "fromYear":2015,"toYear":2025,"lastModified": 1712345678901 }
+}
+```
 
-Month summary:
+### `POST /api/chat`
+- Parses rainfall questions locally first (e.g. “066214 2023 total”, “066214 March 2023”).  
+- If unknown, **streams** GPT replies (requires `OPENAI_API_KEY`).
 
-{ "stationNum":"066214","stationName":"Sydney...","year":"2023","month":"March","total_mm":85.7 }
-
-Dataset Meta
-GET /api/rainfall/meta
-
-
-Returns { stationCount, stations: [{ stationNum, fromYear, toYear, file }], global: { fromYear, toYear, lastModified } }.
-
-Chat
-POST /api/chat
-Content-Type: application/json
-{ "messages": [ { "role":"user", "content":"066214 2023 total" } ] }
-
-
-Server first tries to parse a rainfall intent and answer from local JSON.
-
-Otherwise, streams GPT output (requires OPENAI_API_KEY).
-
-cURL (stream):
-
+**cURL**
+```bash
 curl -N -X POST http://localhost:8787/api/chat \
--H "Content-Type: application/json" \
--d '{"messages":[{"role":"user","content":"Hello"}]}'
+  -H "Content-Type: application/json" \
+  -d '{"messages":[{"role":"user","content":"066214 March 2023?"}]}'
+```
 
-🖼️ Rainfall Section (Frontend Details)
+---
 
-AverageRainfall.tsx
+## Frontend Notes
+- `AverageRainfall.tsx`
+  - Fetches `/public/data/rain_json_*.json`, computes **monthly averages** by station across available years, renders a **multi‑series bar chart** (Recharts).
+  - Station chips let you toggle series.
+  - Below chart, station cards show **avg annual rainfall** and **wettest month**.
+  - Heatmap:
+    - Public file: `<img src="/data/heatmap.png" />`
+    - Bundled asset:
+      ```tsx
+      import heatmapPng from "../assets/heatmap.png";
+      <img src={heatmapPng} alt="Rainfall heatmap" />
+      ```
 
-Fetches per-station JSONs from /public/data.
+- `vite.config.ts` proxies `/api/*` → `http://localhost:8787`.
 
-Computes monthly averages across all available years per station.
+---
 
-Renders a multi-station bar chart (toggle stations).
+## Tunneling / Remote Demo
+If you expose your dev box via a tunnel (Cloudflare/Ngrok), run:
+```bash
+npm run dev:tunnel
+# uses VITE_TUNNEL_HOST=urbanoasis.apdcrew.com for HMR over WSS
+```
+Ensure your tunnel forwards **5173** (frontend) and **8787** (API), or host the API separately.
 
-Shows average annual rainfall and wettest month per station.
+---
 
-Heatmap:
+## Build & Preview
+```bash
+npm run build
+npm run preview   # serves dist/ on http://localhost:4173
+```
+For production, serve `dist/` statically and run the Express API (`server/index.ts`) on a server or serverless platform. If you want a single host, proxy `/api/*` to the API from your web server.
 
-If using public file:
+---
 
-<img src="/data/heatmap.png" alt="Rainfall heatmap" />
+## Troubleshooting
+- **/api/chat 404**: Run `npm run dev:local` so both server and web start; confirm Vite proxy for `/api` points to `:8787`.
+- **429 from OpenAI**: Quota exhausted or wrong project; add credit or select correct project.
+- **Heatmap missing on prod**: Use `/data/heatmap.png` (file in `public/data/`) or `import heatmapPng` (file in `src/assets/`).  
+- **JSON not loading**: Check filename pattern & `FROM_YEAR`/`TO_YEAR` constants in `AverageRainfall.tsx`.
+- **Tunnels 502**: Lock ports (`strictPort: true`) and set `VITE_TUNNEL_HOST` correctly.
 
+---
 
-If bundling from src/assets:
-
-import heatmapPng from "../assets/heatmap.png";
-<img src={heatmapPng} alt="Rainfall heatmap" />
-
-
-If the image loads locally but not on a hosted domain, ensure the deployed base path is correct or switch to the bundled import.
-
-🌐 Impact
-
-Prioritises high-risk, high-population suburbs for water policy.
-
-Enables smarter allocation and climate-resilient planning.
-
-Communicates clearly via a data-driven UI and chat.
-
-🚀 Future Work
-
-Add temperature, soil moisture, evaporation features.
-
-Expand dashboard to energy and sewage metrics.
-
-Automate BoM ingestion to refresh JSONs on a schedule.
-
-👩‍💻 Team
-
-Josh Morton
-
-Jie Yong
-
-Paul Chen
-
-🛠️ Troubleshooting
-
-/api/chat → 404: Run npm run dev:local. Ensure Vite proxy targets http://localhost:8787.
-
-429 (OpenAI): Add credit or select the correct project for your API key.
-
-Heatmap not visible: Check path (/data/heatmap.png) or use import heatmapPng.
-
-JSON not loading: Ensure filename pattern and FROM_YEAR/TO_YEAR match the code or update constants.
-
-⚖️ Notes
-
-Demo/PoC. Respect BoM/ABS licenses. OpenAI usage is optional and billed separately.
+## Attribution
+- **Rainfall data**: Bureau of Meteorology (BoM), NSW.  
+- **Population data**: Australian Bureau of Statistics (ABS).  
+- Demo for research/education; respect source terms/licences.
