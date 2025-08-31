@@ -19,6 +19,9 @@ import { Droplets, Loader2 } from "lucide-react";
 const DATA_ROOT = "/data"; // served from /public/data
 const FROM_YEAR = 2015;
 const TO_YEAR = new Date().getFullYear();
+// put near your other constants
+import heatmapPng from "../assets/heatmap.png"; // adjust ../ if this file is deeper
+
 
 // Stations list (matches your scraping list)
 const STATIONS: { stationNumber: string; stationName: string }[] = [
@@ -332,6 +335,28 @@ export const AverageRainfall: React.FC = () => {
                             </div>
                         ))}
                 </div>
+
+                {/* Heatmap image */}
+                <div className="mt-10">
+                    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                        <div className="px-6 pt-6">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-1">Rainfall Heatmap</h3>
+                            <p className="text-sm text-gray-600">
+                                Visual overview of relative rainfall intensity across the region.
+                            </p>
+                        </div>
+
+                        <div className="px-6 pb-6">
+                            <img
+                                src={heatmapPng}        // put the file in /public/data/heatmap.png
+                                alt="Rainfall heatmap"
+                                loading="lazy"
+                                className="w-full h-auto rounded-xl border border-gray-200"
+                            />
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     );
